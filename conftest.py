@@ -1,4 +1,5 @@
 import pytest
+from modules.api.clients.github import GitHub
 
 
 class User:
@@ -31,3 +32,10 @@ def test_change_name(user):
 
 def test_change_second_name(user):
     assert user.second_name == 'Moisiienko'
+
+
+@pytest.fixture
+def github_api():
+    api = GitHub()
+
+    yield api
