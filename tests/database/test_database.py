@@ -36,7 +36,7 @@ def test_product_qnt_update():
 @pytest.mark.database
 def test_product_insert():
     db = Database()
-    db.insert_product(4, 'Ð¿ÐµÑ‡Ð¸Ð²Ð¾', 'Ñ�Ð¾Ð»Ð¾Ð´ÐºÐµ', 30)
+    db.insert_product(4, 'печиво', 'солодке', 30)
     water_qnt = db.select_product_qnt_by_id(4)
     assert water_qnt[0][0] == 30
 
@@ -44,7 +44,7 @@ def test_product_insert():
 @pytest.mark.database
 def test_product_delete():
     db = Database()
-    db.insert_product(99, 'Ñ‚ÐµÑ�Ñ‚Ð¾Ð²Ñ–', 'Ð´Ð°Ð½Ñ–', 999)
+    db.insert_product(99, 'тестові', 'дані', 999)
     db.delete_product_by_id(99)
     qnt = db.select_product_qnt_by_id(99)
     assert len(qnt) == 0
@@ -54,12 +54,12 @@ def test_product_delete():
 def test_detiled_orders():
     db = Database()
     orders = db.get_detailed_orders()
-    print("Ð—Ð°Ð¼Ð¾Ð²Ð»ÐµÐ½Ð½Ñ�", orders)
+    print("Замовлення", orders)
     # Check quantity of orders equal to 1
     assert len(orders) == 1
 
     # Check structure of data
     assert orders[0][0] == 1
     assert orders[0][1] == 'Sergii'
-    assert orders[0][2] == 'Ñ�Ð¾Ð»Ð¾Ð´ÐºÐ° Ð²Ð¾Ð´Ð°'
-    assert orders[0][3] == 'Ð· Ñ†ÑƒÐºÑ€Ð¾Ð¼'
+    assert orders[0][2] == 'солодка вода'
+    assert orders[0][3] == 'з цукром'
